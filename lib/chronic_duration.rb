@@ -189,7 +189,7 @@ private
   end
 
   def convert_to_number(string)
-    string.to_f % 1 > 0 ? string.to_f : string.to_i
+    string.index('.') ? string.to_f : string.to_i
   end
 
   def duration_units_list
@@ -245,7 +245,7 @@ private
       end
     end
     # add '1' at front if string starts with something recognizable but not with a number, like 'day' or 'minute 30sec'
-    res.unshift(1) if res.length > 0 && mappings[res[0]]
+    res.unshift(1) if res.length > 0 && mappings[res[0].to_sym]
     res.join(' ')
   end
 
