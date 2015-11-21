@@ -1,0 +1,68 @@
+en:
+  chronic:
+    
+    join_words:
+      - "and"
+      - "with"
+      - "plus"
+    
+    format:
+      short:
+        years: y
+        months: mo
+        weeks: w
+        days: d
+        hours: h
+        minutes: m
+        seconds: s
+      default:
+        years: " yr"
+        months: " mo"
+        weeks: " wk"
+        days: " day"
+        hours: " hr"
+        minutes: " min"
+        seconds: " sec"
+      long:
+        years: " year"
+        months: " month"
+        weeks: " week"
+        days: " day"
+        hours: " hour"
+        minutes: " minute"
+        seconds: " second"
+
+    mapping:
+      seconds: seconds
+      second: seconds
+      secs: seconds
+      sec: seconds
+      s: seconds
+      minutes: minutes
+      minute: minutes
+      mins: minutes
+      min: minutes
+      m: minutes
+      hours: hours
+      hour: hours
+      hrs: hours
+      hr: hours
+      h: hours
+      days: days
+      day: days
+      dy: days
+      d: days
+      weeks: weeks
+      week: weeks
+      wks: weeks
+      wk: weeks
+      w: weeks
+      months: months
+      mo: months
+      mos: months
+      month: months
+      years: years
+      year: years
+      yrs: years
+      yr: years
+      y: years

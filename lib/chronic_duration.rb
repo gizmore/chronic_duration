@@ -104,18 +104,18 @@ module ChronicDuration
 
     case opts[:format]
     when :micro
-      dividers = {
+      dividers = format(:short) rescue {
         :years => 'y', :months => 'mo', :weeks => 'w', :days => 'd', :hours => 'h', :minutes => 'm', :seconds => 's' }
       joiner = ''
     when :short
-      dividers = {
+      dividers = format(:short) rescue {
         :years => 'y', :months => 'mo', :weeks => 'w', :days => 'd', :hours => 'h', :minutes => 'm', :seconds => 's' }
     when :default
-      dividers = {
+      dividers = format(:default) rescue {
         :years => ' yr', :months => ' mo', :weeks => ' wk', :days => ' day', :hours => ' hr', :minutes => ' min', :seconds => ' sec',
         :pluralize => true }
     when :long
-      dividers = {
+      dividers = format(:long) rescue {
         :years => ' year', :months => ' month', :weeks => ' week', :days => ' day', :hours => ' hour', :minutes => ' minute', :seconds => ' second',
         :pluralize => true }
     when :chrono
@@ -157,6 +157,10 @@ module ChronicDuration
   end
 
 private
+
+  def format(format)
+    I18n.t!("chronic.format.#{format}.dividers")
+  end
 
   def humanize_time_unit(number, unit, pluralize, keep_zero)
     return nil if number == 0 && !keep_zero
@@ -233,7 +237,7 @@ private
         res << word.strip
         next
       end
-      stripped_word = word.strip.gsub(/^,/, '').gsub(/,$/, '')
+      stripped_word = word.strip.gsub(/^,/, '').gsub(/,$/, '').to_sym
       if mappings.has_key?(stripped_word)
         res << mappings[stripped_word]
       elsif !join_words.include?(stripped_word) and ChronicDuration.raise_exceptions
@@ -246,44 +250,44 @@ private
   end
 
   def mappings
-    {
-      'seconds' => 'seconds',
-      'second'  => 'seconds',
-      'secs'    => 'seconds',
-      'sec'     => 'seconds',
-      's'       => 'seconds',
-      'minutes' => 'minutes',
-      'minute'  => 'minutes',
-      'mins'    => 'minutes',
-      'min'     => 'minutes',
-      'm'       => 'minutes',
-      'hours'   => 'hours',
-      'hour'    => 'hours',
-      'hrs'     => 'hours',
-      'hr'      => 'hours',
-      'h'       => 'hours',
-      'days'    => 'days',
-      'day'     => 'days',
-      'dy'      => 'days',
-      'd'       => 'days',
-      'weeks'   => 'weeks',
-      'week'    => 'weeks',
-      'wks'     => 'weeks',
-      'wk'      => 'weeks',
-      'w'       => 'weeks',
-      'months'  => 'months',
-      'mo'      => 'months',
-      'mos'     => 'months',
-      'month'   => 'months',
-      'years'   => 'years',
-      'year'    => 'years',
-      'yrs'     => 'years',
-      'yr'      => 'years',
-      'y'       => 'years'
+    I18n.t!('chronic.mapping') rescue {
+      seconds: 'seconds',
+      second: 'seconds',
+      secs: 'seconds',
+      sec: 'seconds',
+      s: 'seconds',
+      minutes: 'minutes',
+      minute: 'minutes',
+      mins: 'minutes',
+      min: 'minutes',
+      m: 'minutes',
+      hours: 'hours',
+      hour: 'hours',
+      hrs: 'hours',
+      hr: 'hours',
+      h: 'hours',
+      days: 'days',
+      day: 'days',
+      dy: 'days',
+      d: 'days',
+      weeks: 'weeks',
+      week: 'weeks',
+      wks: 'weeks',
+      wk: 'weeks',
+      w: 'weeks',
+      months: 'months',
+      mo: 'months',
+      mos: 'months',
+      month: 'months',
+      years: 'years',
+      year: 'years',
+      yrs: 'years',
+      yr: 'years',
+      y: 'years',
     }
   end
 
   def join_words
-    ['and', 'with', 'plus']
+    I18n.t!('chronic.join_words') rescue ['and', 'with', 'plus']
   end
 end
