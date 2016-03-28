@@ -6,6 +6,8 @@ A simple Ruby natural language parser for elapsed time. (For example, 4 hours an
 
 The reverse can also be accomplished with the output method. So pass in seconds and you can get strings like 4 mins 31.51 secs (default  format), 4h 3m 30s, or 4:01:29.
 
+This fork adds i18n support.
+
 ## Usage
 
     >> require 'chronic_duration'
@@ -77,5 +79,4 @@ errm,pdf, brianjlandau, jduff, olauzon, roboman, ianlevesque, bolandrm
 * Context specific matching (E.g., for '4m30s', assume 'm' is minutes not months)
 * Smartly parse vacation-like durations (E.g., '4 days and 3 nights')
 * :chrono output option should probably change to something like 4 days 4:00:12 instead of 4:04:00:12
-* Other locale support
 
